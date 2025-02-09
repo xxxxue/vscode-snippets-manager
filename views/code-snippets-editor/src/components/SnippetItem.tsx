@@ -114,6 +114,11 @@ const SnippetItem = (props: Props) => {
                   <div
                     className="code-snippets-editor-snippet__top__prefix__item"
                     key={index}
+                    style={{
+                      backgroundColor: "rgb(242,242,242)",
+                      borderColor: "red",
+                      fontSize: "15px",
+                    }}
                   >
                     {prefix}
                   </div>
@@ -204,6 +209,11 @@ const SnippetItem = (props: Props) => {
                 <span
                   key={index}
                   className="code-snippets-editor-snippet__scope__item"
+                  style={{
+                    backgroundColor: "rgb(242,242,242)",
+                    borderColor: "red",
+                    fontSize: "15px",
+                  }}
                 >
                   {scope}
                 </span>
@@ -214,7 +224,17 @@ const SnippetItem = (props: Props) => {
 
         {snippet.description && (
           <div className="code-snippets-editor-snippet__desc">
-            {snippet.description}
+            <span
+              style={{
+                color: "black",
+                borderColor: "red",
+                padding: "5px",
+                fontSize: "15px",
+                width: "auto",
+              }}
+            >
+              {snippet.description}
+            </span>
           </div>
         )}
 

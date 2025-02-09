@@ -1,6 +1,6 @@
 {
-  "name": "snippetsmanager",
-  "displayName": "Snippets Manager",
+  "name": "a-my-snippets-manager",
+  "displayName": "a-my-snippets-manager",
   "version": "0.3.16",
   "description": "Create and edit snippets easily.",
   "categories": [
@@ -29,7 +29,9 @@
     "_vscode:reinstall": "yarn run _vscode:uninstall; yarn run _vscode:pack && yarn run _vscode:install",
     "_vscode:install": "ls snippetsmanager-*.vsix | xargs code --install-extension",
     "_vscode:pack": "rm snippetsmanager-*.vsix; vsce package --yarn",
+    "_vscode:pack2": "vsce package --yarn",
     "_vscode:uninstall": "code --uninstall-extension zjffun.snippetsmanager",
+    "build":"yarn run compile && yarn run compile-web && yarn run _vscode:pack2",
     "compile": "yarn run editor-view:build && node esbuild.js",
     "compile-web": "webpack --mode production --devtool hidden-source-map",
     "editor-view:build": "webpack --config ./views/code-snippets-editor/webpack.config.js --mode=production --node-env=production",
@@ -164,6 +166,12 @@
           "default": true,
           "scope": "window",
           "description": "%extension.configuration.autoCloseSnippetBodyEditor.desc%"
+        },
+        "snippetsManager.showSnippetDescription": {
+          "type": "boolean",
+          "default": true,
+          "scope": "window",
+          "description": ""
         }
       }
     },
