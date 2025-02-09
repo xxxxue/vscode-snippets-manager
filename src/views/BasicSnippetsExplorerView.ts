@@ -23,9 +23,14 @@ export default abstract class BasicSnippetsExplorerView
 
   protected context: vscode.ExtensionContext;
 
+  private showSnippetDescription: boolean;
+
   constructor(context: vscode.ExtensionContext) {
     this.context = context;
     const that = this;
+
+    const snippetsManagerConfig =vscode.workspace.getConfiguration("snippetsManager");
+    this.showSnippetDescription = snippetsManagerConfig.get<boolean>("showSnippetDescription") ?? false;
 
     // wait for onDidChangeTreeData and _onDidChangeTreeData added
     setTimeout(() => {
@@ -109,6 +114,11 @@ export default abstract class BasicSnippetsExplorerView
     );
     item.command = !element.children ? viewSnippetCommand : undefined;
     item.contextValue = contextValue;
+
+    if (this.showSnippetDescription && element.description) {
+      item.description = `  【 ${element.description} 】`
+      item.tooltip = element.description.toString()
+    }
 
     return item;
   }
